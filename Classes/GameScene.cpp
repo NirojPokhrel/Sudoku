@@ -39,6 +39,7 @@ bool GameScene::init() {
 
   this->addChild(editName);
 #endif
+#if 0
   auto start_pos = std::pair<uint32_t, uint32_t>{origin.x + 50, origin.y + 150};
   uint32_t size = 3 * 60 + 4 * 5;
   for (int i = 0; i < 3; ++i) {
@@ -47,6 +48,15 @@ bool GameScene::init() {
                       60, 5);
     }
   }
+
+#endif
+  ui::ImageView *image_view = ui::ImageView::create("res/game_layout.png");
+  auto scale_x = visibleSize.width / image_view->getContentSize().width;
+  auto scale_y = visibleSize.height / image_view->getContentSize().height;
+  image_view->setScale(scale_x, scale_y);
+  image_view->setPosition(Vec2(origin.x + visibleSize.width / 2,
+                               origin.y + visibleSize.height / 2));
+  this->addChild(image_view);
 
   return true;
 }
