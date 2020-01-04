@@ -3,6 +3,7 @@
 #include "cocos2d.h"
 #include "definitions.h"
 #include "extensions/cocos-ext.h"
+#include "game_logic/game_util.h"
 #include "ui/CocosGUI.h"
 #include <utility>
 
@@ -28,4 +29,6 @@ public:
 private:
   void Create3x3Matrix(const std::pair<uint32_t, uint32_t> &origin,
                        uint32_t cell_size, uint32_t cell_diff);
+
+  game_util::game_board game_state_;
 };

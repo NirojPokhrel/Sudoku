@@ -21,7 +21,7 @@ bool GameScene::init() {
   if (!Layer::init()) {
     return false;
   }
-
+  game_state_ = game_util::GetNewGame();
   auto visibleSize = Director::getInstance()->getVisibleSize();
   Vec2 origin = Director::getInstance()->getVisibleOrigin();
   // set background
@@ -46,14 +46,14 @@ bool GameScene::init() {
   for (int i = 0; i < 3; ++i) {
     for (int j = 0; j < 3; ++j) {
       Create3x3Matrix({start_pos.first + j * size, start_pos.second - i * size},
-                      constants::kBkCellSize, constants::kBkCellBorder);
+                      i, j);
     }
   }
   return true;
 }
 
 void GameScene::Create3x3Matrix(const std::pair<uint32_t, uint32_t> &origin,
-                                uint32_t cell_size, uint32_t cell_diff) {
+                                uint32_t box_i, uint32_t box_j) {
   auto visibleSize = Director::getInstance()->getVisibleSize();
   auto x_scale = visibleSize.width / constants::kBkImgWidth;
   auto y_scale = visibleSize.height / constants::kBkImgHeight;
@@ -61,10 +61,13 @@ void GameScene::Create3x3Matrix(const std::pair<uint32_t, uint32_t> &origin,
   for (int i = 0; i < 3; i++) {
     for (int j = 0; j < 3; j++) {
       ui::EditBox *editName = ui::EditBox::create(
-          Size(cell_size * x_scale, cell_size * y_scale),
+          Size(constants::kBkCellSize * x_scale,
+               constants::kBkCellSize * y_scale),
           ui::Scale9Sprite::create("res/wrong_edit_box.png"));
-      current_pos.first = origin.first + i * (cell_size + cell_diff);
-      current_pos.second = origin.second - j * (cell_size + cell_diff);
+      current_pos.first = origin.first + i * (constants::kBkCellSize +
+                                              constants::kBkCellBorder);
+      current_pos.second = origin.second - j * (constants::kBkCellSize +
+                                                constants::kBkCellBorder);
       editName->setPosition(
           Vec2(x_scale * current_pos.first, y_scale * current_pos.second));
       editName->setFontSize(50);
@@ -75,6 +78,7 @@ void GameScene::Create3x3Matrix(const std::pair<uint32_t, uint32_t> &origin,
       editName->setTextHorizontalAlignment(cocos2d::TextHAlignment::CENTER);
       editName->setReturnType(ui::EditBox::KeyboardReturnType::DONE);
       editName->setDelegate(this);
+      editName->setActionTag(9 * (j + 3 * box_i) + (3 * box_j) + i + 1);
 
       this->addChild(editName);
     }
@@ -104,4 +108,5 @@ void GameScene::editBoxReturn(cocos2d::ui::EditBox *editBox) {
   } else {
     editBox->setOpacity(0);
   }
+  std::cout << editBox->getActionTag() << std::endl;
 }
