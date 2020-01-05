@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/bin/Sudoku/Sudoku",
+            "program": "${workspaceFolder}/build/Classes/game_logic/test/unittest_exec",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

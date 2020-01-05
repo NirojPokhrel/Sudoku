@@ -27,8 +27,7 @@ public:
   void editBoxReturn(cocos2d::ui::EditBox *editBox) override;
 
 private:
-  void Create3x3Matrix(const std::pair<uint32_t, uint32_t> &origin,
-                       uint32_t cell_size, uint32_t cell_diff);
+  void Create3x3Matrix(const std::pair<uint32_t, uint32_t> &origin);
 
   game_util::game_board game_state_;
 };

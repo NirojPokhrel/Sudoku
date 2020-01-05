@@ -6,7 +6,7 @@
         {
             "type": "shell",
             "label": "g++ build active file",
-            "command": "mkdir -p build && cd build && cmake .. && make",
+            "command": "mkdir -p build && cd build && cmake .. -DUNITTEST=1 && make",
             "args": [],
             "options": {
                 "cwd": "${workspaceFolder}"
