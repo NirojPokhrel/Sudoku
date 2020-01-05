@@ -29,6 +29,17 @@ set(APP_NAME Sudoku)
 
 project(${APP_NAME})
 
+################### Prepare only unittests #######################
+if (UNITTEST)
+    include (cmake/gmock_init.cmake)
+    include_directories (${GTEST_INCLUDE_DIRS})
+    include_directories (${GMOCK_INCLUDE_DIRS})
+    include_directories(${CMAKE_SOURCE_DIR}/Classes/game_logic)
+    add_subdirectory(Classes/game_logic/test)
+    return()
+endif()
+##################################################################
+
 if(XCODE)
     if(NOT DEFINED CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET)
         SET (CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET 8.0)
