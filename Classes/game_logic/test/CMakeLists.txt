@@ -1,5 +1,6 @@
 add_library(logic_lib
-                ../game_util.cpp)
+                ../game_util.cpp
+                ../game_solver.cpp)
 
 
 target_compile_options(logic_lib PRIVATE -Wall 
@@ -14,9 +15,13 @@ target_compile_options(logic_lib PRIVATE -Wall
                 -Wcast-qual 
                 -Wconversion
                 -Wenum-compare 
-                -Wsign-conversion)
+                -Wsign-conversion
+                -g 
+                -O0)
 
-add_executable(unittest_exec game_util_test.cpp)
+add_executable(unittest_exec 
+                game_util_test.cpp
+                game_solver_test.cpp)
 
 target_link_libraries(unittest_exec ${GTEST_STATIC_LIBRARIES} pthread logic_lib)
 
