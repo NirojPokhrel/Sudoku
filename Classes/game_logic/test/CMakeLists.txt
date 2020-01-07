@@ -1,6 +1,7 @@
 add_library(logic_lib
                 ../game_util.cpp
-                ../game_solver.cpp)
+                ../game_solver.cpp
+                ../sudoku_generator.cpp)
 
 
 target_compile_options(logic_lib PRIVATE -Wall 
@@ -21,7 +22,8 @@ target_compile_options(logic_lib PRIVATE -Wall
 
 add_executable(unittest_exec 
                 game_util_test.cpp
-                game_solver_test.cpp)
+                game_solver_test.cpp
+                sudoku_generator_test.cpp)
 
 target_link_libraries(unittest_exec ${GTEST_STATIC_LIBRARIES} pthread logic_lib)
 

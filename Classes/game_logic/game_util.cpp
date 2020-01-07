@@ -1,5 +1,18 @@
 #include "game_util.h"
+#include "sudoku_generator.h"
+#include <iomanip>
 #include <iostream>
+#include <random>
+
+namespace {
+inline uint8_t GenerateRandom(double begin, double end) {
+  std::random_device rd;
+  std::mt19937 mt(rd());
+  std::uniform_real_distribution<double> dist(begin, end);
+
+  return static_cast<uint8_t>(dist(mt));
+}
+} // namespace
 
 namespace game_util {
 game_board GetNewGame() {
@@ -13,7 +26,6 @@ game_board GetNewGame() {
                      {0, 6, 0, 0, 0, 0, 2, 8, 0},
                      {0, 0, 0, 4, 1, 9, 0, 0, 5},
                      {0, 0, 0, 0, 8, 0, 0, 7, 9}}};
-#else
   game_board brd = {{{0, 0, 0, 0, 0, 0, 6, 8, 0},
                      {0, 0, 0, 0, 7, 3, 0, 0, 9},
                      {3, 0, 9, 0, 0, 0, 0, 4, 5},
@@ -24,7 +36,8 @@ game_board GetNewGame() {
                      {7, 0, 0, 6, 8, 0, 0, 0, 0},
                      {0, 2, 8, 0, 0, 0, 0, 0, 0}}};
 #endif
-  return brd;
+  game_logic::SudokuGenerator sudoku_gen;
+  return sudoku_gen.GenerateBoard(40);
 }
 
 std::pair<uint8_t, uint8_t> ConvertIndexToPoint(uint8_t index) {
@@ -90,5 +103,18 @@ bool IsSpaceFilled(const game_board &brd) {
     }
   }
   return true;
+}
+
+uint8_t GenerateRandomNum1To9() { return GenerateRandom(0.0, 8.9); }
+
+uint8_t GenerateRandomNum1To81() { return GenerateRandom(0.0, 80.9); }
+
+void PrintBoard(const game_board &brd) {
+  for (const auto &row : brd) {
+    for (const auto &elem : row) {
+      std::cout << std::setw(2) << int(elem) << " ";
+    }
+    std::cout << std::endl;
+  }
 }
 } // namespace game_util

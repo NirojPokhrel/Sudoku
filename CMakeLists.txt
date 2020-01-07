@@ -70,11 +70,15 @@ list(APPEND GAME_SOURCE
      Classes/AppDelegate.cpp
      Classes/GameScene.cpp
      Classes/game_logic/game_util.cpp
+     Classes/game_logic/game_solver.cpp
+     Classes/game_logic/sudoku_generator.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
      Classes/GameScene.h
      Classes/game_logic/game_util.h
+     Classes/game_logic/game_solver.h
+     Classes/game_logic/sudoku_generator.h
      )
 
 if(ANDROID)

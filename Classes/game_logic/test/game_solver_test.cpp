@@ -2,7 +2,7 @@
 #include "../game_util.h"
 #include <gtest/gtest.h>
 
-TEST(GameSolver, InitializeBoard) {
+TEST(GameSolver, DISABLED_InitializeBoard) {
   auto game = game_util::GetNewGame();
   game_logic::SudokuSolver solver(game);
   solver.InitNode();

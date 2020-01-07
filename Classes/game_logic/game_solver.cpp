@@ -21,13 +21,14 @@ void SudokuSolver::InitNode() {
   ReduceSingleConstrained(option_nodes_);
 
   BackTracking(option_nodes_);
-
+#if 0
   for (uint8_t i = 0; i < 81; ++i) {
     if (i % 9 == 0) {
       std::cout << std::endl;
     }
     std::cout << std::setw(2) << int(option_nodes_[i].selected) << " ";
   }
+#endif
   // Back tracking algorithm
 }
 
@@ -53,8 +54,8 @@ bool SudokuSolver::ReduceSingleConstrained(std::array<node, 81> &selection) {
 
       continue_flag = true;
     }
-    PrintConstraints(selection);
-    std::cout << std::endl << std::endl;
+    // PrintConstraints(selection);
+    // std::cout << std::endl << std::endl;
   } while (continue_flag);
   return true;
 }
@@ -65,14 +66,19 @@ bool SudokuSolver::BackTracking(std::array<node, 81> selection) {
   // continue with constraint propagation
   auto idx = GetMinimumIndex(selection);
   if (idx.first == 100) {
-    for (uint8_t i = 0; i < 81; ++i) {
-      if (i % 9 == 0) {
-        std::cout << std::endl;
+    if (solution_count_) {
+      counter_++;
+      return false;
+    } else {
+      for (uint8_t i = 0; i < 81; ++i) {
+        if (i % 9 == 0) {
+          std::cout << std::endl;
+        }
+        std::cout << std::setw(2) << int(selection[i].selected) << " ";
       }
-      std::cout << std::setw(2) << int(selection[i].selected) << " ";
+      std::cout << std::endl << std::endl;
+      return true;
     }
-    std::cout << std::endl << std::endl;
-    return true;
   }
   for (uint8_t i = 0; i < 9; ++i) {
     auto selection_copy = selection;

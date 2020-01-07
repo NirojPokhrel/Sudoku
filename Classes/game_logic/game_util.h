@@ -12,4 +12,7 @@ cpoint ConvertIndexToPoint(uint8_t index);
 uint8_t ConvertPointToIndex(const cpoint &point);
 bool IsEntryValid(const game_board &brd, const cpoint &entry, uint8_t value);
 bool IsSpaceFilled(const game_board &brd);
+uint8_t GenerateRandomNum1To9();
+uint8_t GenerateRandomNum1To81();
+void PrintBoard(const game_board &brd);
 } // namespace game_util

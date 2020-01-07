@@ -6,8 +6,10 @@
 namespace game_logic {
 class SudokuSolver {
 public:
-  SudokuSolver(const game_util::game_board &state) : game_state_(state) {}
+  SudokuSolver(const game_util::game_board &state, bool sol_count = false)
+      : game_state_(state), solution_count_(sol_count) {}
   void InitNode();
+  uint32_t GetSolutionCount() const { return counter_; }
 
 private:
   struct node {
@@ -26,5 +28,7 @@ private:
   bool ReduceSingleConstrained(std::array<node, 81> &selection);
   game_util::game_board game_state_;
   std::array<node, 81> option_nodes_;
+  bool solution_count_;
+  uint32_t counter_{0};
 };
 } // namespace game_logic

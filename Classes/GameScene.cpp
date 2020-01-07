@@ -122,7 +122,7 @@ void GameScene::editBoxReturn(cocos2d::ui::EditBox *editBox) {
       editBox->setOpacity(0);
     }
     game_state_[pos.first][pos.second] = value;
-    if (IsSpaceFilled(game_state_)) {
+    if (game_util::IsSpaceFilled(game_state_)) {
       // game over
     }
   }
