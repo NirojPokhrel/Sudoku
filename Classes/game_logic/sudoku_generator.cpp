@@ -33,7 +33,8 @@ game_util::game_board SudokuGenerator::GenerateBoard(uint8_t turnoff_count) {
       }
     }
   }
-  std::cout << std::endl << std::endl;
+  std::cout << std::endl
+            << std::endl;
   game_util::PrintBoard(brd);
   return brd;
 }
@@ -42,7 +43,7 @@ bool SudokuGenerator::RandomTurnoff(game_util::game_board &brd) {
   uint8_t idx = game_util::GenerateRandomNum1To81();
   // random number is 0 - 80
   auto point = game_util::ConvertIndexToPoint(idx);
-  if (!brd[point.first][point.second]) {
+  if (brd[point.first][point.second] == 0) {
     return false;
   }
   auto bkup = brd[point.first][point.second];
@@ -57,11 +58,10 @@ bool SudokuGenerator::RandomTurnoff(game_util::game_board &brd) {
 }
 
 std::array<uint8_t, 9> SudokuGenerator::GenerateRow() {
-  std::array<uint8_t, 9> row;
+  std::array<uint8_t, 9> row{};
   uint8_t row_pos = 0;
 
-  std::array<bool, 9> next{true, true, true, true, true,
-                           true, true, true, true};
+  std::array<bool, 9> next{ true, true, true, true, true, true, true, true, true };
   for (uint8_t i = 0; i < 9; ++i) {
     uint8_t rand_num = game_util::GenerateRandomNum1To9();
     while (rand_num < 9) {
@@ -78,8 +78,8 @@ std::array<uint8_t, 9> SudokuGenerator::GenerateRow() {
 }
 
 std::array<uint8_t, 9>
-SudokuGenerator::Shiftby(const std::array<uint8_t, 9> &row, uint8_t shift) {
-  std::array<uint8_t, 9> shifted_row;
+  SudokuGenerator::Shiftby(const std::array<uint8_t, 9> &row, uint8_t shift) {
+  std::array<uint8_t, 9> shifted_row{};
   for (uint8_t i = 0; i < 9; ++i) {
     uint8_t pos = (i - shift + 9) % 9;
     shifted_row[pos] = row[i];

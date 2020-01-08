@@ -12,7 +12,7 @@ inline uint8_t GenerateRandom(double begin, double end) {
 
   return static_cast<uint8_t>(dist(mt));
 }
-} // namespace
+}// namespace
 
 namespace game_util {
 game_board GetNewGame() {
@@ -32,8 +32,7 @@ uint8_t ConvertPointToIndex(const std::pair<uint8_t, uint8_t> &point) {
   return static_cast<uint8_t>(9 * point.first + point.second);
 }
 
-inline bool VerticalOk(const game_board &brd, const cpoint &entry,
-                       uint8_t value) {
+inline bool VerticalOk(const game_board &brd, const cpoint &entry, uint8_t value) {
   for (uint8_t i = 0; i < 9; ++i) {
     if (brd[entry.first][i] == value) {
       return false;
@@ -42,8 +41,7 @@ inline bool VerticalOk(const game_board &brd, const cpoint &entry,
   return true;
 }
 
-inline bool HorizontalOk(const game_board &brd, const cpoint &entry,
-                         uint8_t value) {
+inline bool HorizontalOk(const game_board &brd, const cpoint &entry, uint8_t value) {
   for (uint8_t i = 0; i < 9; ++i) {
     if (brd[i][entry.second] == value) {
       return false;
@@ -53,10 +51,10 @@ inline bool HorizontalOk(const game_board &brd, const cpoint &entry,
 }
 
 inline bool BoxOk(const game_board &brd, const cpoint &entry, uint8_t value) {
-  uint8_t i = static_cast<uint8_t>(entry.first - entry.first % 3);
-  uint8_t j = static_cast<uint8_t>(entry.second - entry.second % 3);
-  uint8_t i_end = static_cast<uint8_t>(i + 3);
-  uint8_t j_end = static_cast<uint8_t>(j + 3);
+  auto i = static_cast<uint8_t>(entry.first - entry.first % 3);
+  auto j = static_cast<uint8_t>(entry.second - entry.second % 3);
+  auto i_end = static_cast<uint8_t>(i + 3);
+  auto j_end = static_cast<uint8_t>(j + 3);
   for (; i < i_end; ++i) {
     for (; j < j_end; ++j) {
       if (brd[i][j] == value) {
@@ -70,14 +68,13 @@ inline bool BoxOk(const game_board &brd, const cpoint &entry, uint8_t value) {
 bool IsEntryValid(const game_board &brd, const cpoint &entry, uint8_t value) {
   // check the box i.e. 3x3 board
   // check the vertical and horizontal region for overlapping
-  return VerticalOk(brd, entry, value) && HorizontalOk(brd, entry, value) &&
-         BoxOk(brd, entry, value);
+  return VerticalOk(brd, entry, value) && HorizontalOk(brd, entry, value) && BoxOk(brd, entry, value);
 }
 
 bool IsSpaceFilled(const game_board &brd) {
   for (uint8_t i = 0; i < 9; ++i) {
     for (uint8_t j = 0; j < 9; ++j) {
-      if (!brd[i][j]) {
+      if (brd[i][j] == 0) {
         return false;
       }
     }
@@ -97,4 +94,4 @@ void PrintBoard(const game_board &brd) {
     std::cout << std::endl;
   }
 }
-} // namespace game_util
+}// namespace game_util

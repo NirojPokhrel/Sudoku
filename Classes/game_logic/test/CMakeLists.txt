@@ -11,7 +11,7 @@ target_compile_options(logic_lib PRIVATE -Wall
                 -Wmissing-noreturn 
                 -Wunreachable-code
                 -Wsign-compare 
-                -Wstrict-null-sentinel 
+                #-Wstrict-null-sentinel 
                 -Wreturn-type 
                 -Wcast-qual 
                 -Wconversion
