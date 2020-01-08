@@ -19,7 +19,9 @@ target_compile_options(logic_lib PRIVATE -Wall
                 -Wsign-conversion
                 -g 
                 -O0)
-
+if (CLANGTIDY)
+    return()
+endif()
 add_executable(unittest_exec 
                 game_util_test.cpp
                 game_solver_test.cpp
