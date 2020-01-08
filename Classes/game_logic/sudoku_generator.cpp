@@ -40,7 +40,7 @@ game_util::game_board SudokuGenerator::GenerateBoard(uint8_t turnoff_count) {
 
 bool SudokuGenerator::RandomTurnoff(game_util::game_board &brd) {
   uint8_t idx = game_util::GenerateRandomNum1To81();
-  idx += 1; // random number is 0 - 80, index 1 - 81
+  // random number is 0 - 80
   auto point = game_util::ConvertIndexToPoint(idx);
   if (!brd[point.first][point.second]) {
     return false;

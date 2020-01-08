@@ -70,6 +70,7 @@ bool SudokuSolver::BackTracking(std::array<node, 81> selection) {
       counter_++;
       return false;
     } else {
+#if 0
       for (uint8_t i = 0; i < 81; ++i) {
         if (i % 9 == 0) {
           std::cout << std::endl;
@@ -77,6 +78,7 @@ bool SudokuSolver::BackTracking(std::array<node, 81> selection) {
         std::cout << std::setw(2) << int(selection[i].selected) << " ";
       }
       std::cout << std::endl << std::endl;
+#endif
       return true;
     }
   }
@@ -88,7 +90,7 @@ bool SudokuSolver::BackTracking(std::array<node, 81> selection) {
       selection_copy[idx.first].selected = i + 1;
       auto point = game_util::ConvertIndexToPoint(idx.first);
       PropagateConstraints(selection_copy, point.first, point.second, i + 1);
-      PrintConstraints(selection_copy);
+      // PrintConstraints(selection_copy);
       if (!ReduceSingleConstrained(selection_copy)) {
         continue;
       }
