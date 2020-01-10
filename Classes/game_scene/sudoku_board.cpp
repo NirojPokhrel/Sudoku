@@ -74,6 +74,7 @@ void SudokuBoard::Create3x3Matrix(const std::pair<uint32_t, uint32_t> &origin) {
         editName->setReturnType(ui::EditBox::KeyboardReturnType::DONE);
         editName->setDelegate(this);
         editName->setActionTag(9 * j + i);
+        sudoku_boxes_[9 * j + i] = editName;
         this->addChild(editName);
       } else {
         ui::TextField *textBox = ui::TextField::create();
@@ -127,4 +128,13 @@ void SudokuBoard::editBoxReturn(cocos2d::ui::EditBox *editBox) {
     }
   }
   std::cout << editBox->getActionTag() << std::endl;
+}
+
+void SudokuBoard::SetGameState(const game_util::game_board &state) {
+  game_state_ = state;
+  for (uint8_t i = 0; i < 9; i++) {
+    for (uint8_t j = 0; j < 9; j++) {
+      sudoku_boxes_[i * 9 + j]->setText(std::to_string(game_state_[i][j]).c_str());
+    }
+  }
 }

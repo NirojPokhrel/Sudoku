@@ -80,6 +80,11 @@ bool SudokuSolver::BackTracking(std::array<node, 81> selection) {
       }
       std::cout << std::endl << std::endl;
 #endif
+      for (uint8_t i = 0; i < 9; ++i) {
+        for (uint8_t j = 0; j < 9; ++j) {
+          game_state_[i][j] = selection[i * 9 + j].selected;
+        }
+      }
       return true;
     }
   }
