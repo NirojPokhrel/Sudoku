@@ -72,6 +72,9 @@ list(APPEND GAME_SOURCE
      Classes/game_logic/game_util.cpp
      Classes/game_logic/game_solver.cpp
      Classes/game_logic/sudoku_generator.cpp
+     Classes/game_scene/sudoku_board.cpp 
+     Classes/game_scene/sudoku_game.cpp
+     Classes/game_scene/sudoku_solve.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
@@ -79,6 +82,9 @@ list(APPEND GAME_HEADER
      Classes/game_logic/game_util.h
      Classes/game_logic/game_solver.h
      Classes/game_logic/sudoku_generator.h
+     Classes/game_scene/sudoku_board.h 
+     Classes/game_scene/sudoku_game.h
+     Classes/game_scene/sudoku_solve.h
      )
 
 if(ANDROID)
