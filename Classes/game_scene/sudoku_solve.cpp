@@ -47,7 +47,6 @@ void SudokuSolve::touchEvent(Ref* sender, cocos2d::ui::Widget::TouchEventType ty
   }
   case cocos2d::ui::Widget::TouchEventType::ENDED: {
     // solve the problem
-    std::cout << "Solve the problem" << std::endl;
     auto current_state = SudokuBoard::GetGameState();
     game_logic::SudokuSolver solver(current_state);
     solver.InitNode();
