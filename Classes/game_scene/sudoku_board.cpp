@@ -85,6 +85,7 @@ void SudokuBoard::Create3x3Matrix(const std::pair<uint32_t, uint32_t> &origin) {
         textBox->setFontSize(30);
         textBox->setMaxLength(1);
         textBox->setString(std::to_string(game_state_[j][i]));
+        sudoku_boxes_[9 * j + i] = nullptr;
         this->addChild(textBox);
       }
     }
@@ -134,7 +135,9 @@ void SudokuBoard::SetGameState(const game_util::game_board &state) {
   game_state_ = state;
   for (uint8_t i = 0; i < 9; i++) {
     for (uint8_t j = 0; j < 9; j++) {
-      sudoku_boxes_[i * 9 + j]->setText(std::to_string(game_state_[i][j]).c_str());
+      if (sudoku_boxes_[i * 9 + j] != nullptr) {
+        sudoku_boxes_[i * 9 + j]->setText(std::to_string(game_state_[i][j]).c_str());
+      }
     }
   }
 }

@@ -36,7 +36,7 @@ private:
   void Create3x3Matrix(const std::pair<uint32_t, uint32_t> &origin);
 
   game_util::game_board game_state_{};
-  std::array<cocos2d::ui::EditBox *, 81> sudoku_boxes_;
+  std::array<cocos2d::ui::EditBox *, 81> sudoku_boxes_{};
 
   std::string background_res_;
 
