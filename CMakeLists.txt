@@ -68,23 +68,23 @@ endif()
 # add cross-platforms source files and header files 
 list(APPEND GAME_SOURCE
      Classes/AppDelegate.cpp
-     Classes/GameScene.cpp
      Classes/game_logic/game_util.cpp
      Classes/game_logic/game_solver.cpp
      Classes/game_logic/sudoku_generator.cpp
      Classes/game_scene/sudoku_board.cpp 
      Classes/game_scene/sudoku_game.cpp
      Classes/game_scene/sudoku_solve.cpp
+     Classes/game_scene/main_menu_scene.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
-     Classes/GameScene.h
      Classes/game_logic/game_util.h
      Classes/game_logic/game_solver.h
      Classes/game_logic/sudoku_generator.h
      Classes/game_scene/sudoku_board.h 
      Classes/game_scene/sudoku_game.h
      Classes/game_scene/sudoku_solve.h
+     Classes/game_scene/main_menu_scene.h
      )
 
 if(ANDROID)
