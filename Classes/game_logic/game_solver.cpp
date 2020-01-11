@@ -84,8 +84,6 @@ bool SudokuSolver::BackTracking(std::array<node, 81> selection) {
         return true;
       }
     }
-    // with the changes try to propagate constraints
-    // restore
   }
   return false;
 }

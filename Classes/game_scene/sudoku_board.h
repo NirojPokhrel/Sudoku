@@ -5,6 +5,8 @@
 #include "definitions.h"
 #include "extensions/cocos-ext.h"
 #include "ui/CocosGUI.h"
+#include <functional>
+#include <unordered_set>
 #include <utility>
 
 namespace cocoui = cocos2d::ui;
@@ -31,6 +33,9 @@ public:
 protected:
   game_util::game_board GetGameState() { return game_state_; }
   void SetGameState(const game_util::game_board &state);
+  void SetGameOverCallback(const std::function<void()> &callback) {
+    gameover_callback_ = callback;
+  }
 
 private:
   void Create3x3Matrix(const std::pair<uint32_t, uint32_t> &origin);
@@ -41,5 +46,9 @@ private:
   std::string background_res_;
 
   bool is_game_;
+
+  std::unordered_set<uint8_t> errors_;
+
+  std::function<void()> gameover_callback_{ nullptr };
 };
 }// namespace game_scene

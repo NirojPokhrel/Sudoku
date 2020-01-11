@@ -110,20 +110,27 @@ void SudokuBoard::editBoxReturn(cocos2d::ui::EditBox *editBox) {
     // usually 1 will be the element and additional null termination '/0'
     editBox->setOpacity(150);
     editBox->setText("?");
+    errors_.insert(editBox->getActionTag());
   } else if (!std::isdigit(*editBox->getText())) {
     editBox->setOpacity(150);
+    errors_.insert(editBox->getActionTag());
   } else {
     auto pos = game_util::ConvertIndexToPoint(editBox->getActionTag());
     game_state_[pos.first][pos.second] = 0;
     uint8_t value = std::stoi(editBox->getText());
     if (!game_util::IsEntryValid(game_state_, pos, value)) {
       editBox->setOpacity(150);
+      errors_.insert(editBox->getActionTag());
     } else {
       editBox->setOpacity(0);
+      errors_.erase(editBox->getActionTag());
     }
     game_state_[pos.first][pos.second] = value;
-    if (game_util::IsSpaceFilled(game_state_)) {
+    if (game_util::IsSpaceFilled(game_state_) && errors_.empty()) {
       // game over
+      if (gameover_callback_ != nullptr) {
+        gameover_callback_();
+      }
     }
   }
 }

@@ -65,28 +65,34 @@ bool SudokuGame::init() {
   statusField->setFontSize(30);
   statusField->setString("Playing ...");
   this->addChild(statusField);
+  game_scene::SudokuBoard::SetGameOverCallback([&]() {
+    paused_ = true;
+    statusField->setString("You Won ...");
+  });
 
-  Director::getInstance()->getScheduler()->schedule([&](float dt) {
-    if (paused_) {
-      return;
-    }
-    seconds_ += dt;
-    if (seconds_ > 59) {
-      seconds_ -= 60;
-      minutes_ += 1;
-      if (minutes_ > 59) {
-        minutes_ = 0;
+  Director::getInstance()
+    ->getScheduler()
+    ->schedule([&](float dt) {
+      if (paused_) {
+        return;
       }
-    }
-    std::stringstream ss;
-    ss << std::setw(2) << std::setfill('0') << static_cast<uint32_t>(minutes_) << ":"
-       << std::setw(2) << std::setfill('0') << static_cast<uint32_t>(seconds_);
-    timeCouter->setString(ss.str());
-  },
-    this,
-    1.0f,
-    false,
-    "schedulerKey");
+      seconds_ += dt;
+      if (seconds_ > 59) {
+        seconds_ -= 60;
+        minutes_ += 1;
+        if (minutes_ > 59) {
+          minutes_ = 0;
+        }
+      }
+      std::stringstream ss;
+      ss << std::setw(2) << std::setfill('0') << static_cast<uint32_t>(minutes_) << ":"
+         << std::setw(2) << std::setfill('0') << static_cast<uint32_t>(seconds_);
+      timeCouter->setString(ss.str());
+    },
+      this,
+      1.0f,
+      false,
+      "schedulerKey");
 
   return true;
 }
