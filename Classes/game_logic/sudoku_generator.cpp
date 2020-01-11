@@ -24,7 +24,6 @@ game_util::game_board SudokuGenerator::GenerateBoard(uint8_t turnoff_count) {
   brd[7] = Shiftby(brd[6], 3);
   brd[8] = Shiftby(brd[7], 3);
 
-  game_util::PrintBoard(brd);
   for (uint8_t i = 0; i < turnoff_count;) {
     if (RandomTurnoff(brd)) {
       i++;
@@ -33,9 +32,6 @@ game_util::game_board SudokuGenerator::GenerateBoard(uint8_t turnoff_count) {
       }
     }
   }
-  std::cout << std::endl
-            << std::endl;
-  game_util::PrintBoard(brd);
   return brd;
 }
 
@@ -86,15 +82,3 @@ std::array<uint8_t, 9>
   }
   return shifted_row;
 }
-
-/**
- *  0   6
- *  1   7
- *  2   8
- *  3   0
- *  4   1
- *  5   2
- *  6   3
- *  7   4
- *  8   5
- **/

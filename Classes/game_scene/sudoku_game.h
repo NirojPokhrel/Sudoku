@@ -13,6 +13,7 @@ public:
 private:
   void onPlayPauseClicked(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
   void onSolveClicked(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
+  void onNewClicked(Ref* sender, cocos2d::ui::Widget::TouchEventType type);
   bool paused_{ false };
   cocos2d::ui::TextField* timeCouter;
   cocos2d::ui::TextField* statusField;

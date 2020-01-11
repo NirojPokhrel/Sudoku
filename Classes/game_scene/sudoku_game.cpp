@@ -1,5 +1,6 @@
 #include "sudoku_game.h"
 #include "../game_logic/game_solver.h"
+#include "../game_logic/sudoku_generator.h"
 #include "cocos2d.h"
 #include <iomanip>
 
@@ -28,6 +29,8 @@ bool SudokuGame::init() {
   newButton->setPosition(Vec2(
     visibleSize.width - 275,
     visibleSize.height - 175));
+  newButton->addTouchEventListener(
+    CC_CALLBACK_2(SudokuGame::onNewClicked, this));
   this->addChild(newButton);
 
   playPauseButton =
@@ -115,6 +118,17 @@ void SudokuGame::onSolveClicked(Ref *sender, cocos2d::ui::Widget::TouchEventType
     solver.InitNode();
     auto solved_state = solver.GetState();
     SudokuBoard::SetGameState(solved_state);
+    break;
+  }
+  }
+}
+
+void SudokuGame::onNewClicked(Ref *sender, cocos2d::ui::Widget::TouchEventType type) {
+  switch (type) {
+  case cocos2d::ui::Widget::TouchEventType::ENDED: {
+    auto scene = game_scene::SudokuGame::createScene();
+    auto transitionFade = TransitionFade::create(1, scene);
+    Director::getInstance()->replaceScene(scene);
     break;
   }
   }

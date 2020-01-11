@@ -1,5 +1,4 @@
 #include "sudoku_board.h"
-#include <iostream>
 
 USING_NS_CC;
 
@@ -105,7 +104,6 @@ void SudokuBoard::editBoxTextChanged(cocos2d::ui::EditBox *editBox,
 
 void SudokuBoard::editBoxReturn(cocos2d::ui::EditBox *editBox) {
   auto text = editBox->getText();
-  std::cout << "Strlen : " << std::strlen(text) << std::endl;
   if (std::strlen(text) < 1) {
     return;
   } else if (std::strlen(text) > 2) {
@@ -128,7 +126,6 @@ void SudokuBoard::editBoxReturn(cocos2d::ui::EditBox *editBox) {
       // game over
     }
   }
-  std::cout << editBox->getActionTag() << std::endl;
 }
 
 void SudokuBoard::SetGameState(const game_util::game_board &state) {
