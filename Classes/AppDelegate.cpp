@@ -23,7 +23,7 @@
  ****************************************************************************/
 
 #include "AppDelegate.h"
-#include "game_scene/sudoku_game.h"
+#include "game_scene/main_menu_scene.h"
 
 // #define USE_AUDIO_ENGINE 1
 
@@ -110,7 +110,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
   register_all_packages();
 
   // create a scene. it's an autorelease object
-  auto scene = game_scene::SudokuGame::createScene();
+  auto scene = game_scene::MainMenuScene::createScene();
 
   // run
   director->runWithScene(scene);
