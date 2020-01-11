@@ -1,15 +1,12 @@
 #include "sudoku_generator.h"
 #include "game_solver.h"
-#include <iostream>
 
 using game_logic::SudokuGenerator;
 
-//
 //  Fill the first row with nine different numbers.
 //  Fill the second row which is a shift of the first line by three
 //  slots.Fill the third row which is a shift of the second line by three
 //  slots.Fill the fourth row which is a shift of the third by one slot.
-
 game_util::game_board SudokuGenerator::GenerateBoard(uint8_t turnoff_count) {
   game_util::game_board brd;
   brd[0] = GenerateRow();
