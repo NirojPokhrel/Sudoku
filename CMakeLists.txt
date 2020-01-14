@@ -29,6 +29,14 @@ set(APP_NAME Sudoku)
 
 project(${APP_NAME})
 
+if (SANITIZER)
+    message(STATUS "Sanitizer : ${SANITIZER}")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=${SANITIZER}")
+    set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -fsanitize=${SANITIZER}")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fsanitize=${SANITIZER}")
+    set(CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} -fsanitize=${SANITIZER}")
+endif() 
+
 ################### Prepare only unittests #######################
 if (UNITTEST OR CLANGTIDY)
     include (cmake/gmock_init.cmake)

@@ -17,6 +17,8 @@ class SudokuBoard : public cocos2d::Layer
 public:
   explicit SudokuBoard(std::string res_name, bool is_game = true)
     : background_res_(std::move(res_name)), is_game_(is_game) {}
+
+  virtual ~SudokuBoard() = default;
   static cocos2d::Scene *createScene();
 
   virtual bool init();
