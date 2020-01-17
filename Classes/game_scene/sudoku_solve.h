@@ -6,6 +6,7 @@
 #include "ui/CocosGUI.h"
 
 namespace game_scene {
+/// SudokuSolve - scene for entering the sudoku game for solving it
 class SudokuSolve : public SudokuBoard
 {
 public:

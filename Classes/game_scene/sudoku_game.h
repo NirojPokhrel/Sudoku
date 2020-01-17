@@ -2,6 +2,7 @@
 #include "sudoku_board.h"
 
 namespace game_scene {
+/// SudokuGame - scene that is for playing the sudoku game
 class SudokuGame : public SudokuBoard
 {
 public:

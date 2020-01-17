@@ -121,7 +121,7 @@ void SudokuGame::onSolveClicked(Ref *sender, cocos2d::ui::Widget::TouchEventType
     // solve the problem
     auto current_state = SudokuBoard::GetGameState();
     game_logic::SudokuSolver solver(current_state);
-    solver.InitNode();
+    solver.Solve();
     auto solved_state = solver.GetState();
     SudokuBoard::SetGameState(solved_state);
     break;

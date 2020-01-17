@@ -11,6 +11,7 @@
 
 namespace cocoui = cocos2d::ui;
 namespace game_scene {
+/// SudokuBoard - Scene containing sudoku board
 class SudokuBoard : public cocos2d::Layer
   , public cocos2d::ui::EditBoxDelegate
 {

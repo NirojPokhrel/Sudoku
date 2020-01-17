@@ -5,6 +5,7 @@
 #include "ui/CocosGUI.h"
 
 namespace game_scene {
+/// MainMenuScene - main scene for the menu to play or solve
 class MainMenuScene : public cocos2d::Layer
 {
 public:
