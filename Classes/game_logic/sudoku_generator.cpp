@@ -42,7 +42,7 @@ bool SudokuGenerator::RandomTurnoff(game_util::game_board &brd) {
   auto bkup = brd[point.first][point.second];
   brd[point.first][point.second] = 0;
   game_logic::SudokuSolver solver(brd, true);
-  solver.InitNode();
+  solver.Solve();
   if (solver.GetSolutionCount() == 1) {
     return true;
   }

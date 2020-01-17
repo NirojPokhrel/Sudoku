@@ -4,13 +4,25 @@
 #include <array>
 
 namespace game_logic {
+/// SudokuSolver - solve the sudoku given the problem
 class SudokuSolver
 {
 public:
+  /// Constructor
+  ///       @param1 (current) : 9X9 sudoku Game Board
+  ///       @param2  (sol_count) : number of possible solution given the state
   SudokuSolver(const game_util::game_board &state, bool sol_count = false)
     : game_state_(state), solution_count_(sol_count) {}
-  void InitNode();
+
+  /// Solve - Solve the sudoku if possible
+  void Solve();
+
+  /// GetSolutionCount - Number of solution given the game state. Solve should prceed this call.
+  ///       @return - number of solution
   uint32_t GetSolutionCount() const { return counter_; }
+
+  /// GetState - Get the solved state. Solve should preceed this call and GetSolutionCount() == 1 for valid sudolu
+  ///     @return - solved game_util::game_board
   game_util::game_board GetState() { return game_state_; }
 
 private:

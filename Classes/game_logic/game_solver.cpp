@@ -5,7 +5,7 @@
 
 using game_logic::SudokuSolver;
 
-void SudokuSolver::InitNode() {
+void SudokuSolver::Solve() {
   // initialize data structure with the selected points
   for (uint8_t i = 0; i < 9; ++i) {
     for (uint8_t j = 0; j < 9; ++j) {
